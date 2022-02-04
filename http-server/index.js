@@ -1,3 +1,4 @@
+const { read } = require("fs");
 const http = require("http");
 
 const PORT = 3000;
@@ -17,7 +18,14 @@ const friends = [
 const server = http.createServer((req, res) => {
 	const items = req.url.split("/"); // /friends/2
 
-	if (items[1] === "friends") {
+	if (req.method === "POST" && items[1] === "friends") {
+		req.on("data", (data) => {
+			const readable = data.toString();
+			console.log("request: ", readable);
+			friends.push(JSON.parse(readable));
+		});
+		req.pipe(res);
+	} else if (req.method === "GET" && items[1] === "friends") {
 		res.setHeader("Content-Type", "application/json");
 		if (items.length === 3) {
 			if (Number(items[2]) >= friends.length) {
