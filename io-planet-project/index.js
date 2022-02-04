@@ -4,7 +4,6 @@ const { parse } = require("csv-parse");
 const fs = require("fs");
 
 const results = [];
-
 const isHabitablePlanet = (planet) => {
 	return (
 		planet["koi_disposition"] === "CONFIRMED" &&
@@ -36,7 +35,6 @@ const readline = require("readline");
 const fs1 = require("fs");
 
 let counter = 0;
-
 let lineReader = readline.createInterface({
 	input: fs1.createReadStream("./data/dummy.txt").on("end", () => {
 		console.log("all lines are processed");
