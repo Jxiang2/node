@@ -1,8 +1,8 @@
+// read csv
+// readable stream -> pipe -> writable stream
 const { parse } = require("csv-parse");
 const fs = require("fs");
 
-// read csv
-// readable stream -> pipe -> writable stream
 const results = [];
 
 const isHabitablePlanet = (planet) => {
@@ -32,16 +32,21 @@ fs.createReadStream("./data/kepler_data.csv")
 	});
 
 // read txt dummy data
-dummy_results = [];
-dummy_values = [];
-fs.createReadStream("./data/dummy.txt", "utf8")
-	.on("data", (data) => {
-		data = data.split("\n");
-		dummy_results = [...data];
+const readline = require("readline");
+const fs1 = require("fs");
+
+let counter = 0;
+
+let lineReader = readline.createInterface({
+	input: fs1.createReadStream("./data/dummy.txt").on("end", () => {
+		console.log("all lines are processed");
+	}),
+});
+
+lineReader
+	.on("line", (line) => {
+		counter++;
 	})
-	.on("end", () => {
-		dummy_results.forEach((pair, i) =>
-			dummy_values.push(Number(pair.substring(pair.indexOf(":") + 1)))
-		);
-		console.log(dummy_values);
+	.on("close", () => {
+		console.log(counter);
 	});
