@@ -1,7 +1,8 @@
 const { parse } = require("csv-parse");
 const fs = require("fs");
 
-// read csv; readable stream -> pipe -> writable stream
+// read csv
+// readable stream -> pipe -> writable stream
 const results = [];
 
 const isHabitablePlanet = (planet) => {
