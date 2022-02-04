@@ -1,6 +1,7 @@
 const { parse } = require("csv-parse");
 const fs = require("fs");
 
+// read csv; readable stream -> pipe -> writable stream
 const results = [];
 
 const isHabitablePlanet = (planet) => {
@@ -12,7 +13,6 @@ const isHabitablePlanet = (planet) => {
 	);
 };
 
-// readable stream -> pipe -> writable stream
 fs.createReadStream("./data/kepler_data.csv")
 	.pipe(
 		parse({
@@ -27,10 +27,20 @@ fs.createReadStream("./data/kepler_data.csv")
 		console.log(err.message);
 	})
 	.on("end", () => {
-		console.log(
-			results.map((planet) => {
-				return planet["kepler_name"];
-			})
-		);
 		console.log(`${results.length} habitable planets found!`);
+	});
+
+// read txt dummy data
+dummy_results = [];
+dummy_values = [];
+fs.createReadStream("./data/dummy.txt", "utf8")
+	.on("data", (data) => {
+		data = data.split("\n");
+		dummy_results = [...data];
+	})
+	.on("end", () => {
+		dummy_results.forEach((pair, i) =>
+			dummy_values.push(Number(pair.substring(pair.indexOf(":") + 1)))
+		);
+		console.log(dummy_values);
 	});

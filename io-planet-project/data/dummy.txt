@@ -1,0 +1,4 @@
+attributeA: 19
+attributeB: 120
+attributeC: 150
+attributeD:
