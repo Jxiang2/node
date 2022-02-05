@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 	const delta = Date.now() - start;
 	console.log(`${req.method} ${req.baseUrl}${req.url}... finished in ${delta}ms`);
 });
-app.use(express.json());
+app.use(express.json()); // convert every json/application request body to JS object
 
 // routers
 app.use("/friends", friendsRouter);
