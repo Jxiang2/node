@@ -1,35 +1,30 @@
-const EventEmitter = require('events');
+const EventEmitter = require("events");
 const celebrity = new EventEmitter();
 
 // subscribe1 to celebrity for observer1
-celebrity.on('race', (result)=>{
-    if (result === 'win')
-        console.log('Congrats!')
+celebrity.on("race", (result) => {
+	if (result === "win") console.log("Congrats!");
 });
 
 // subscribe2 to celebrity for observer1
-celebrity.on('race', (result)=>{
-    if (result === 'loss')
-        console.log('Oh sh*t!')
+celebrity.on("race", (result) => {
+	if (result === "loss") console.log("Oh sh*t!");
 });
 
 // subscribe to celebrity for observer2
-celebrity.on('race', (result)=>{
-    if (result === 'win')
-        console.log('I could have win!')
+celebrity.on("race", (result) => {
+	if (result === "win") console.log("I could have win!");
 });
 
 // subscribe2 to celebrity for observer2
-celebrity.on('race', (result)=>{
-    if (result === 'loss')
-        console.log('Nice!')
+celebrity.on("race", (result) => {
+	if (result === "loss") console.log("Nice!");
 });
 
 // emit events
-celebrity.emit('race', 'win');
-celebrity.emit('race', 'loss');
+celebrity.emit("race", "win");
 
 // trigger when no more code to excute
-process.on('exit', (code)=>{
-    console.log('Process exit with code: ', code);
+process.on("exit", (code) => {
+	console.log("Process exit with code: ", code);
 });
