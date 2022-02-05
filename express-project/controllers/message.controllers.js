@@ -1,7 +1,7 @@
 const path = require("path");
 
 function getMessage(req, res) {
-	const msgPath = path.join(__dirname, "..", "public", "images", "download.jpeg");
+	const msgPath = path.join(__dirname, "..", "public", "download.jpeg");
 	return res.status(200).sendFile(msgPath);
 }
 

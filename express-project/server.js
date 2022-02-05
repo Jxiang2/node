@@ -16,7 +16,6 @@ app.use((req, res, next) => {
 	const delta = Date.now() - start;
 	console.log(`${req.method} ${req.baseUrl}${req.url}... finished in ${delta}ms`);
 });
-app.use("/site", express.static(path.join(__dirname, "public"))); // serve static webpages in public folder
 app.use(express.json()); // convert every json/application request body to JS object
 
 // routers
@@ -25,5 +24,5 @@ app.use("/message", messageRouter);
 app.use("/", rootRouter);
 
 app.listen(PORT, () => {
-	console.log(`Listening on port ${PORT}...`);
+	console.log(`Listeing on port ${PORT}...`);
 });
