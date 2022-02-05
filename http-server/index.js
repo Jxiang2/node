@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
 			console.log("request: ", readable);
 			friends.push(JSON.parse(readable));
 		});
-		req.pipe(res);
+		req.pipe(res); //response will end afeter request is end
 	} else if (req.method === "GET" && items[1] === "friends") {
 		res.setHeader("Content-Type", "application/json");
 		if (items.length === 3) {
