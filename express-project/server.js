@@ -13,6 +13,13 @@ app.get("/", (req, res) => {
 	res.json({ message: "Welcome!!!" });
 });
 
+app.use((req, res, next) => {
+	const start = Date.now();
+	next();
+	const delta = Date.now() - start;
+	console.log(`${req.method} ${req.url}... finished in ${delta}ms`);
+});
+
 app.get("/friends", (req, res) => {
 	res.status(200).json(friends);
 });
