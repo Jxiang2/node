@@ -1,6 +1,7 @@
 import express from "express";
 
-const expressApp: express.Application = express();
-export default expressApp;
+const app: express.Application = express();
+app.use(express.json());
 
+export default app;
 export { express };
