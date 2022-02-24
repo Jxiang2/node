@@ -7,7 +7,7 @@ interface Planet {
     koi_prad: number;
 }
 
-const planets: Planet[] = [];
+const results: Planet[] = [];
 
 const isHabitablePlanet = <T extends Planet>(planet: T) => {
 	return (
@@ -26,13 +26,13 @@ fs.createReadStream("./data/kepler_data.csv")
 		})
 	)
 	.on("data", (data) => {
-		isHabitablePlanet(data) && planets.push(data);
+		isHabitablePlanet(data) && results.push(data);
 	})
 	.on("error", (err) => {
 		console.log(err.message);
 	})
 	.on("end", () => {
-		console.log(`${planets.length} habitable planets found!`);
+		console.log(`${results.length} habitable results found!`);
 	});
 
-export { planets };
+export { results };
