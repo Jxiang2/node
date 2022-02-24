@@ -7,7 +7,8 @@ interface Planet {
     koi_prad: number;
 }
 
-const planets: object[] = [];
+const planets: Planet[] = [];
+
 const isHabitablePlanet = <T extends Planet>(planet: T) => {
 	return (
 		planet["koi_disposition"] === "CONFIRMED" &&
