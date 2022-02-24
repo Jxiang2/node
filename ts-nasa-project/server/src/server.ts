@@ -1,6 +1,5 @@
 import http from "http";
-import { app, express } from "./app";
-import { Request, Response, NextFunction } from "express";
+import { app } from "./app";
 
 const PORT = process.env.PORT || 8000;
 const server: http.Server  = http.createServer(app);

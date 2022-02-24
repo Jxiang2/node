@@ -1,6 +1,3 @@
-// read csv
-// readable stream -> pipe -> writable stream
-
 import { parse } from "csv-parse";
 import fs from "fs";
 

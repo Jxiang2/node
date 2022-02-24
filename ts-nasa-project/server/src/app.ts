@@ -16,4 +16,4 @@ app.use(express.json());
 // routers
 app.use(planetRouter);
 
-export { express, app };
+export { app };
