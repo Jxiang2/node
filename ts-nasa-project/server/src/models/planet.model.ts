@@ -1,4 +1,4 @@
-import { parse } from "csv-parse";
+import { parse, Parser } from "csv-parse";
 import path from "path";
 import fs from "fs";
 
@@ -21,24 +21,27 @@ const isHabitablePlanet = <T extends Planet>(planet: T) => {
 
 const loadPlanetData = () => {
 	return new Promise((resolve , reject) => {
-		fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'kepler_data.csv'))
-		.pipe(
-			parse({
-				comment: "#",
-				columns: true,
+		const data: Parser = fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'kepler_data.csv'))
+			.pipe(
+				parse({
+					comment: "#",
+					columns: true,
+				})
+			)
+		
+		// getting data...
+		data
+			.on("data", (data) => {
+				isHabitablePlanet(data) && results.push(data);
 			})
-		)
-		.on("data", (data) => {
-			isHabitablePlanet(data) && results.push(data);
-		})
-		.on("error", (err) => {
-			console.log(err.message);
-			reject(err);
-		})
-		.on("end", () => {
-			console.log(`${results.length} habitable results found!`);
-			resolve("success");
-		});
+			.on("error", (err) => {
+				console.log(err.message);
+				reject(err);
+			})
+			.on("end", () => {
+				console.log(`${results.length} habitable results found!`);
+				resolve("success");
+			});
 	});
 }
 
