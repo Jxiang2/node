@@ -3,14 +3,14 @@ import path from "path";
 import fs from "fs";
 
 interface Planet {
-    koi_disposition: string;
-    koi_insol: number;
-    koi_prad: number;
+	koi_disposition: string;
+	koi_insol: number;
+	koi_prad: number;
 }
 
 const results: Planet[] = [];
 
-const isHabitablePlanet = <T extends Planet>(planet: T) => {
+const isHabitablePlanet = <T extends Planet> (planet: T) => {
 	return (
 		planet["koi_disposition"] === "CONFIRMED" &&
 		planet["koi_insol"] > 0.36 &&
@@ -20,15 +20,15 @@ const isHabitablePlanet = <T extends Planet>(planet: T) => {
 };
 
 const loadPlanetData = () => {
-	return new Promise((resolve , reject) => {
+	return new Promise((resolve, reject) => {
 		const data: Parser = fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'kepler_data.csv'))
 			.pipe(
 				parse({
 					comment: "#",
 					columns: true,
 				})
-			)
-		
+			);
+
 		// getting data...
 		data
 			.on("data", (data) => {
@@ -43,7 +43,7 @@ const loadPlanetData = () => {
 				resolve("success");
 			});
 	});
-}
+};
 
 
 
