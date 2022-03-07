@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { planetRouter } from "./routes/planets/planets.routers";
+import path from "path";
 
 const app: express.Application = express();
 
@@ -12,6 +13,7 @@ const options: cors.CorsOptions = {
 
 app.use(cors(options));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // routers
 app.use(planetRouter);
