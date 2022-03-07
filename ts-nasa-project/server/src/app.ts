@@ -7,7 +7,7 @@ import path from "path";
 const app: express.Application = express();
 
 // cors options
-const allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000'];
+const allowedOrigins = ['http://localhost:3000'];
 const options: cors.CorsOptions = {
   origin: allowedOrigins
 };
