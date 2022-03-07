@@ -1,8 +1,11 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import { planetRouter } from "./routes/planets/planets.routers";
 import path from "path";
+
+// routers
+import { planetRouter } from "./routes/planets/planets.router";
+import { launchRouter } from "./routes/launches/launches.router";
 
 const app: express.Application = express();
 
@@ -22,14 +25,11 @@ app.use(express.static(path.join(__dirname, "..", "dist", "client")));
 
 // routers
 app.use(planetRouter);
+app.use(launchRouter);
 
 // set home page to react's home page
-// when running dev mode, epxect a frontend page with no data
-app.get('/', (req, res) => {
+// if express can't find a route, react will take over it 
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "dist", "client", "index.html"));
 });
-app.get('/launch', (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "dist", "client", "index.html"));
-});
-
 export { app };
