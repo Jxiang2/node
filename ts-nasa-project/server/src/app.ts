@@ -14,6 +14,8 @@ const options: cors.CorsOptions = {
 // settings
 app.use(cors(options));
 app.use(express.json());
+
+// server client
 app.use(express.static(path.join(__dirname, "..", "dist", "client")));
 
 // routers
