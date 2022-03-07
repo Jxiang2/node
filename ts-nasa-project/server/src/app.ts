@@ -11,11 +11,17 @@ const options: cors.CorsOptions = {
   origin: allowedOrigins
 };
 
+// settings
 app.use(cors(options));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, "..", "dist", "client")));
 
 // routers
 app.use(planetRouter);
+
+// set home page to react's home page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "dist", "client", "index.html"));
+});
 
 export { app };
