@@ -20,8 +20,8 @@ const Centered = props => {
     ...rest
   } = props;
   return (
-    <div className={`${classes.root} ${className}`} {...rest}>
-      {children}
+    <div className={ `${classes.root} ${className}` } { ...rest }>
+      { children }
     </div>
   );
 };

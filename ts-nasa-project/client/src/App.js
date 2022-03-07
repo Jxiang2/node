@@ -14,14 +14,14 @@ import AppLayout from "./pages/AppLayout";
 import { theme, resources, sounds } from "./settings";
 
 const App = () => {
-  return <ThemeProvider theme={createTheme(theme)}>
-    <SoundsProvider sounds={createSounds(sounds)}>
-      <Arwes animate background={resources.background.large} pattern={resources.pattern}>
-        {anim => (
+  return <ThemeProvider theme={ createTheme(theme) }>
+    <SoundsProvider sounds={ createSounds(sounds) }>
+      <Arwes animate background={ resources.background.large } pattern={ resources.pattern }>
+        { anim => (
           <Router>
-            <AppLayout show={anim.entered} />
+            <AppLayout show={ anim.entered } />
           </Router>
-        )}
+        ) }
       </Arwes>
     </SoundsProvider>
   </ThemeProvider>;
