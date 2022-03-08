@@ -1,9 +1,9 @@
 import express, { Router } from "express";
-import { getAllLaunches } from "./lauches.controller";
+import { httpGetAllLaunches } from "./lauches.controller";
 
 const launchRouter: Router = express.Router();
 
-launchRouter.get('/launches', getAllLaunches);
+launchRouter.get('/launches', httpGetAllLaunches);
 
 export { launchRouter };
 

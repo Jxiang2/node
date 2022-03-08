@@ -9,8 +9,6 @@ interface Launch {
     success: boolean;
 }
 
-const launches = new Map<number, Launch>();
-
 let lauch1: Launch = {
     flightNumber: 100,
     mission: "Kepler Exploration X",
@@ -22,6 +20,11 @@ let lauch1: Launch = {
     success: false
 };
 
+const launches = new Map<number, Launch>();
 launches.set(lauch1.flightNumber, lauch1);
 
-export { launches };
+function getAllLaunches () {
+    return Array.from(launches.values());
+}
+
+export { getAllLaunches };

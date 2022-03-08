@@ -46,6 +46,8 @@ const loadPlanetData = () => {
 	});
 };
 
+function getAllPlanets () {
+	return results;
+}
 
-
-export { results, loadPlanetData };
+export { getAllPlanets, loadPlanetData };

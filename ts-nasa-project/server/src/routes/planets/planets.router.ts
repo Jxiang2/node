@@ -1,8 +1,8 @@
 import express, { Router } from "express";
-import { getAllPlanets } from "./planets.controller";
+import { httpgetAllPlanets } from "./planets.controller";
 
 const planetRouter: Router = express.Router();
 
-planetRouter.get('/planets', getAllPlanets);
+planetRouter.get('/planets', httpgetAllPlanets);
 
 export { planetRouter };
