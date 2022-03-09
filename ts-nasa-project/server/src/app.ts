@@ -20,12 +20,12 @@ app.use(cors(options));
 app.use(morgan("combined"));
 app.use(express.json());
 
-// server client
+// serve client
 app.use(express.static(path.join(__dirname, "..", "dist", "client")));
 
 // routers
-app.use(planetRouter);
-app.use(launchRouter);
+app.use('/planets', planetRouter);
+app.use('/launches', launchRouter);
 
 // set home page to react's home page
 // if express can't find a route, react will take over it 

@@ -2,12 +2,7 @@ import { parse, Parser } from "csv-parse";
 import path from "path";
 import fs from "fs";
 
-// the fileds we are interested in
-interface Planet {
-	koi_disposition: string;
-	koi_insol: number;
-	koi_prad: number;
-}
+import { Planet } from "../interfaces/Planets";
 
 const results: Planet[] = [];
 
