@@ -1,4 +1,5 @@
-import { getAllLaunches, addNewLaunch, LaunchInput } from "../../models/lauches.model";
+import { LaunchInput } from "../../interfaces/Launches";
+import { getAllLaunches, addNewLaunch } from "../../models/lauches.model";
 import { Request, Response } from "express";
 
 function httpGetAllLaunches (req: Request, res: Response) {
