@@ -1,6 +1,6 @@
 import { Launch, LaunchInput } from "../interfaces/Launches";
 
-let latestFlightNumber = 100;
+let LAST_FLIGHT_NUMBER = 100;
 
 let launch1: Launch = {
     flightNumber: 100,
@@ -21,11 +21,11 @@ function getAllLaunches () {
 }
 
 function addNewLaunch (launchInput: LaunchInput) {
-    latestFlightNumber++;
-    launches.set(latestFlightNumber,
+    LAST_FLIGHT_NUMBER++;
+    launches.set(LAST_FLIGHT_NUMBER,
         {
             ...launchInput,
-            flightNumber: latestFlightNumber,
+            flightNumber: LAST_FLIGHT_NUMBER,
             upcoming: true,
             customers: ["ZTM", "NASA"],
             success: true

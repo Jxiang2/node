@@ -9,14 +9,10 @@ import { launchRouter } from "./routes/launches/launches.router";
 
 const app: express.Application = express();
 
-// cors options
-const allowedOrigins = ['http://localhost:3000'];
-const options: cors.CorsOptions = {
-  origin: allowedOrigins
-};
-
 // settings
-app.use(cors(options));
+app.use(cors({
+  origin: ['http://localhost:3000']
+}));
 app.use(morgan("combined"));
 app.use(express.json());
 
