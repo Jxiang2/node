@@ -8,7 +8,7 @@ function httpGetAllLaunches (req: Request, res: Response) {
 
 function httpAddNewLaunch (req: Request, res: Response) {
     const launch: LaunchInput = req.body;
-    if (!launch.mission || !launch.rocket || !launch.launchDate || !launch.destination) {
+    if (!launch.mission || !launch.rocket || !launch.launchDate || !launch.target) {
         return res.status(400).json({
             error: "Missing required launch property"
         });
@@ -25,11 +25,11 @@ function httpAddNewLaunch (req: Request, res: Response) {
     return res.status(201).json(launch);
 }
 
+function httpCancelLaunch (req: Request, res: Response) {
+
+}
+
 export {
     httpGetAllLaunches,
     httpAddNewLaunch
 };
-
-function getTime (): number {
-    throw new Error("Function not implemented.");
-}

@@ -11,7 +11,10 @@ const app: express.Application = express();
 
 // settings
 app.use(cors({
-  origin: ['http://localhost:3000']
+  origin: [
+    'http://localhost:3000', 'http://localhost:8000',
+    'http://127.0.0.1:3000', 'http://127.0.0.1:8000'
+  ]
 }));
 app.use(morgan("combined"));
 app.use(express.json());
