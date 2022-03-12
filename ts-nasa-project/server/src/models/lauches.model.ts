@@ -1,3 +1,4 @@
+import { abort } from "process";
 import { Launch, LaunchInput } from "../interfaces/Launches";
 
 let LAST_FLIGHT_NUMBER = 100;
@@ -33,8 +34,23 @@ function addNewLaunch (launchInput: LaunchInput) {
     );
 }
 
+function existsLaunchWithId (launchId: number) {
+    return launches.has(launchId);
+}
+
+function abortLaunchById (launchId: number) {
+    const aborted = launches.get(launchId);
+    if (aborted) {
+        aborted.upcoming = false;
+        aborted.success = false;
+    }
+    return aborted;
+}
+
 export {
     getAllLaunches,
     addNewLaunch,
+    existsLaunchWithId,
+    abortLaunchById,
     LaunchInput
 };

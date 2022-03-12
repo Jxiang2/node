@@ -1,5 +1,5 @@
 import { LaunchInput } from "../../interfaces/Launches";
-import { getAllLaunches, addNewLaunch } from "../../models/lauches.model";
+import { getAllLaunches, addNewLaunch, existsLaunchWithId, abortLaunchById } from "../../models/lauches.model";
 import { Request, Response } from "express";
 
 function httpGetAllLaunches (req: Request, res: Response) {
@@ -25,11 +25,21 @@ function httpAddNewLaunch (req: Request, res: Response) {
     return res.status(201).json(launch);
 }
 
-function httpCancelLaunch (req: Request, res: Response) {
+function httpAbortLaunch (req: Request, res: Response) {
+    const launchId = Number(req.params.id);
 
+    if (!existsLaunchWithId(launchId)) {
+        return res.status(404).json({
+            error: 'Launch not found'
+        });
+    }
+
+    const aborted = abortLaunchById(launchId);
+    return res.status(200).json(aborted);
 }
 
 export {
     httpGetAllLaunches,
-    httpAddNewLaunch
+    httpAddNewLaunch,
+    httpAbortLaunch
 };
