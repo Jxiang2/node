@@ -1,17 +1,10 @@
-const { read } = require("fs");
 const http = require("http");
 
 const PORT = 3000;
 
 const friends = [
-	{
-		id: 1,
-		name: "Newton",
-	},
-	{
-		id: 2,
-		name: "Tesla",
-	},
+	{ id: 1, name: "Newton" },
+	{ id: 2, name: "Tesla" },
 ];
 
 // req, res are listeners
