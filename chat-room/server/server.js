@@ -16,7 +16,8 @@ io.on("connection", socket => {
   // user join room
   socket.on("joinRoom", ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
-    // the new joined user's socket joins a room
+    // the new joined user's socket joins a room 
+    // or create one if it's the first client
     socket.join(user.room);
 
     // welcome current user
