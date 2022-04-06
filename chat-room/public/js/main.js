@@ -10,10 +10,12 @@ const { username, room } = Qs.parse(location.search, {
 });
 
 // client connects
-const socket = io();
+const socket = io("/multichat");
+const socket2 = io("/chat");
 
 // join chatRoom
 socket.emit("joinRoom", { username, room });
+socket2.emit("test");
 
 // message from server
 socket.on("message", message => {
