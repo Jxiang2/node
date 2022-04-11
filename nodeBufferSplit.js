@@ -1,0 +1,3 @@
+/**
+ * Buffer split method implementation
+ */
