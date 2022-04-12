@@ -1,5 +1,6 @@
 /**
  * Buffer split method implementation
+ * seperate the buffer based on a seperator
  */
 
 Buffer.prototype.split = function (sep) {
