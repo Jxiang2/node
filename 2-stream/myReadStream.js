@@ -12,7 +12,7 @@ class MyReadable extends Readable {
 
   _read () {
     let data = this.source.shift() || null;
-    this.push(data); // generate data to the readable buffer
+    this.push(data); // generate & push data to the readable buffer
   }
 }
 
