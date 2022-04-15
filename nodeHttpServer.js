@@ -19,6 +19,7 @@ const server = http.createServer((req, res) => {
 		});
 		req.pipe(res); //response will end afeter request is end
 	}
+
 	else if (req.method === "GET" && items[1] === "friends") {
 		res.setHeader("Content-Type", "application/json");
 		if (items.length === 3) {
@@ -34,6 +35,7 @@ const server = http.createServer((req, res) => {
 			res.end(JSON.stringify(friends));
 		}
 	}
+
 	else {
 		res.statusCode = 404;
 		res.end("invalid url");
