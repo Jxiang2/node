@@ -1,6 +1,6 @@
 /**
  * Buffer initialization
- * Buffer is a type
+ * Buffer is a type, like an array
  * Buffer elements are reperesented by hexidecimal numbers
  */
 
