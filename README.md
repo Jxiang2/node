@@ -12,4 +12,6 @@ Initialize ts project
 
 4. npx tsc --init
 
-5. npm intall -D ts-jest, jest, supertest
+5. change rootDir and outDir in tsconfig.json
+
+6. npm intall -D ts-jest, jest, supertest
