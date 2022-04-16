@@ -24,7 +24,6 @@ let rs = fs.createReadStream("testR.txt", {
 let bufferArr = [];
 
 rs.on("readable", () => {
-  // buffer is ready to be read
   let data;
   while ((data = rs.read(1)) !== null) { // each time read 1 byte from buffer
     bufferArr.push(data);
