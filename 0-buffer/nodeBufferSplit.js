@@ -3,7 +3,7 @@
  * seperate the buffer based on a seperator
  */
 
-Buffer.prototype.split = function (sep) {
+Buffer.prototype.split = function (sep = " ") {
   let sepLen = Buffer.from(sep).length;
   let result = [];
   let start = 0;
@@ -21,5 +21,6 @@ Buffer.prototype.split = function (sep) {
 
 // test
 let buf = Buffer.from("hello ! world ! there");
+console.dir(buf);
 let bufArr = buf.split(" ! ");
 bufArr.map((e) => console.log(e.toString()));
