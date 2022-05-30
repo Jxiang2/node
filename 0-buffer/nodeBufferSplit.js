@@ -21,6 +21,5 @@ Buffer.prototype.split = function (sep = " ") {
 
 // test
 let buf = Buffer.from("hello ! world ! there");
-console.dir(buf);
 let bufArr = buf.split(" ! ");
 bufArr.map((e) => console.log(e.toString()));
