@@ -1,12 +1,17 @@
 const { UserList, MovieList } = require("../data")
 const _ = require("loadsh")
 
+
+/**
+ * 4 arguments of gql resolvers
+ * parent, args, context, info (not very useful)
+ */
 const resolvers = {
   Query: {
     users: () => {
       return UserList
     },
-    user: (parent, args) => {
+    user: (args) => {
       const filter = args.id
       const user = _.find(UserList, { id: Number(filter) })
       return user
@@ -15,7 +20,7 @@ const resolvers = {
     movies: () => {
       return MovieList
     },
-    movie: (parent, args) => {
+    movie: (args) => {
       const filter = args.name
       const movie = _.find(MovieList, { name: filter })
       return movie
@@ -24,7 +29,9 @@ const resolvers = {
 
   // User's related fileds
   User: {
-    favouriteMovies: (args) => {
+    favouriteMovies: (parent, args, context) => {
+      console.log(parent)
+      console.log(context)
       return _.filter(MovieList, (movie) => movie.yearOfPublication < args.age * 100)
     },
 
@@ -34,14 +41,14 @@ const resolvers = {
   },
 
   Mutation: {
-    createUser: (parent, args) => {
+    createUser: (args) => {
       const user = args.createUserinput
       user.id = UserList[UserList.length - 1].id + 1
       UserList.push(user)
       return user
     },
 
-    updateUsername: (parent, args) => {
+    updateUsername: (args) => {
       const { id, newUsername } = args.updateUsernameInput
       let userToUpdate
 
@@ -55,7 +62,7 @@ const resolvers = {
       return userToUpdate
     },
 
-    deleteUser: (parent, args) => {
+    deleteUser: (args) => {
       const user = _.find(UserList, { id: Number(args.idToDelete) })
       _.remove(UserList, (user) => user.id === Number(args.idToDelete))
       return user
