@@ -9,7 +9,8 @@ const _ = require("loadsh")
 const resolvers = {
   Query: {
     users: () => {
-      return UserList
+      if (UserList) return { users: UserList }
+      return { message: "There was an error on UserList" }
     },
     user: (args) => {
       const filter = args.id
@@ -66,6 +67,16 @@ const resolvers = {
       const user = _.find(UserList, { id: Number(args.idToDelete) })
       _.remove(UserList, (user) => user.id === Number(args.idToDelete))
       return user
+    }
+  },
+
+  UsersResult: {
+    __resolveType: (obj) => {
+      if (obj.users) return "UsersSuccessfulResult"
+
+      if (obj.message) return "UsersErrorResult"
+
+      return null
     }
   }
 
