@@ -53,10 +53,10 @@ const typeDefs = gql`
   }
 
   type UsersSuccessfulResult {
-    users: [User!]!
+    data: [User!]!
   }
   type UsersErrorResult {
-    message: String!
+    error: String!
   }
   union UsersResult = UsersSuccessfulResult | UsersErrorResult
 `

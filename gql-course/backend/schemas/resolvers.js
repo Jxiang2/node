@@ -9,9 +9,10 @@ const _ = require("loadsh")
 const resolvers = {
   Query: {
     users: () => {
-      if (UserList) return { users: UserList }
-      return { message: "There was an error on UserList" }
+      if (UserList) return { data: UserList }
+      return { error: "There was an error on UserList" }
     },
+
     user: (args) => {
       const filter = args.id
       const user = _.find(UserList, { id: Number(filter) })
@@ -21,6 +22,7 @@ const resolvers = {
     movies: () => {
       return MovieList
     },
+
     movie: (args) => {
       const filter = args.name
       const movie = _.find(MovieList, { name: filter })
@@ -30,9 +32,8 @@ const resolvers = {
 
   // User's related fileds
   User: {
-    favouriteMovies: (parent, args, context) => {
+    favouriteMovies: (parent, args) => {
       console.log(parent)
-      console.log(context)
       return _.filter(MovieList, (movie) => movie.yearOfPublication < args.age * 100)
     },
 
@@ -72,15 +73,13 @@ const resolvers = {
 
   UsersResult: {
     __resolveType: (obj) => {
-      if (obj.users) return "UsersSuccessfulResult"
+      if (obj.data) return "UsersSuccessfulResult"
 
-      if (obj.message) return "UsersErrorResult"
+      if (obj.error) return "UsersErrorResult"
 
       return null
     }
   }
-
-
 }
 
 module.exports = {

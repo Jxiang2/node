@@ -5,11 +5,18 @@ import { useMutation } from "@apollo/client"
 const QUERY_ALL_USERS = gql`
   query GetAllUsers {
     users {
-      id
-      name
-      age
-      username
-      nationality
+      ... on UsersSuccessfulResult {
+        data {
+          id
+          name
+          username
+          age
+         nationality
+        }
+      }
+      ... on UsersErrorResult {
+        error
+      }
     }
   }
 `
@@ -64,30 +71,28 @@ export default function DisplayData () {
 
   return (
     <div>
-      <div>
-        <input type="text" placeholder="name" onChange={(e) => setName(e.target.value)} value={name} />
-        <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} value={username} />
-        <input type="number" placeholder="age" onChange={(e) => setAge(e.target.value)} value={age} />
-        <input
-          type="text"
-          placeholder="nationality"
-          onChange={(e) => setNationality(e.target.value.toLocaleUpperCase())}
-          value={nationality}
-        />
+      <input type="text" placeholder="name" onChange={(e) => setName(e.target.value)} value={name} />
+      <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} value={username} />
+      <input type="number" placeholder="age" onChange={(e) => setAge(e.target.value)} value={age} />
+      <input
+        type="text"
+        placeholder="nationality"
+        onChange={(e) => setNationality(e.target.value.toLocaleUpperCase())}
+        value={nationality}
+      />
 
-        <button onClick={(e) => {
-          e.preventDefault()
-          createUser({
-            variables: { createUserinput: { name, username, age: Number(age), nationality } }
-          })
-          refetchUsers()
-        }}>
-          Create User
-        </button>
-      </div>
+      <button onClick={(e) => {
+        e.preventDefault()
+        createUser({
+          variables: { createUserinput: { name, username, age: Number(age), nationality } }
+        })
+        refetchUsers()
+      }}>
+        Create User
+      </button>
 
-      <h1>Display Peop</h1>
-      {userData && userData.users.map((user) => (
+      <h1>Display Data</h1>
+      {userData && userData.users.data.map((user) => (
         <div key={user.id}>
           <h1>Name: {user.name}</h1>
           <h1>Name: {user.age}</h1>
@@ -108,14 +113,12 @@ export default function DisplayData () {
         </div>
       ))}
 
-      <div>
-        <input
-          type="text"
-          placeholder="Interstellar..."
-          onChange={(e) => { setMovieSearched(e.target.value) }}
-          value={movieSearched}
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Interstellar..."
+        onChange={(e) => { setMovieSearched(e.target.value) }}
+        value={movieSearched}
+      />
 
       <button onClick={(e) => fetchMovie(
         { variables: { name: movieSearched } }
@@ -123,14 +126,12 @@ export default function DisplayData () {
         Fetch Data
       </button>
 
-      <div>
-        {movieSearchData &&
-          <div>
-            <h1>Movie name: {movieSearchData.movie?.name}</h1>
-            <h1>Year of Publication: {movieSearchData.movie?.yearOfPublication}</h1>
-          </div>
-        }
-      </div>
+      {movieSearchData &&
+        <div>
+          <h1>Movie name: {movieSearchData.movie?.name}</h1>
+          <h1>Year of Publication: {movieSearchData.movie?.yearOfPublication}</h1>
+        </div>
+      }
 
       {movieFetchError && <h1>There was a error fetching the movie</h1>}
     </div >
