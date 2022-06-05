@@ -1,6 +1,38 @@
 const { gql } = require("apollo-server")
 
 const typeDefs = gql`
+  type UsersSuccessfulResult {
+    data: [User!]!
+  }
+
+  type UsersErrorResult {
+    error: String!
+  }
+
+  type UserSuccessfulResult {
+    data: User!
+  }
+
+  type UserErrorResult {
+    error: String!
+  }
+
+  type MoviesSuccessfulResult {
+    data: [Movie!]!
+  }
+
+  type MoviesErrorResult {
+    error: String!
+  }
+
+  type MovieSuccessfulResult {
+    data: Movie!
+  }
+
+  type MovieErrorResult {
+    error: String!
+  }
+
   type User {
     id: ID!
     name: String!
@@ -20,9 +52,15 @@ const typeDefs = gql`
 
   type Query {
     users: UsersResult
-    user (id: ID!): User
-    movies: [Movie!]
-    movie (name: String!): Movie!
+    user (id: ID!): UserResult
+    movies: MoviesResult
+    movie (name: String!): MovieResult
+  }
+
+  type Mutation {
+    createUser (createUserinput: CreateUserInput!): User!
+    updateUsername (updateUsernameInput: UpdateUsernameInput!): User
+    deleteUser (idToDelete: ID!): User
   }
 
   input CreateUserInput {
@@ -31,16 +69,10 @@ const typeDefs = gql`
     age: Int = 18
     nationality: Nationality = BRAZIL
   }
-
+  
   input UpdateUsernameInput {
     id: ID!
     newUsername: String!
-  }
-
-  type Mutation {
-    createUser (createUserinput: CreateUserInput!): User!
-    updateUsername (updateUsernameInput: UpdateUsernameInput!): User
-    deleteUser (idToDelete: ID!): User
   }
 
   enum Nationality {
@@ -52,13 +84,11 @@ const typeDefs = gql`
     UKRAINE
   }
 
-  type UsersSuccessfulResult {
-    data: [User!]!
-  }
-  type UsersErrorResult {
-    error: String!
-  }
   union UsersResult = UsersSuccessfulResult | UsersErrorResult
+  union UserResult = UserSuccessfulResult | UserErrorResult
+
+  union MoviesResult = MoviesSuccessfulResult | MoviesErrorResult
+  union MovieResult = MovieSuccessfulResult | MovieErrorResult
 `
 
 module.exports = { typeDefs }
