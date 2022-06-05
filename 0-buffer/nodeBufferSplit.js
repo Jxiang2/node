@@ -6,10 +6,9 @@
 Buffer.prototype.split = function (sep = " ") {
   let sepLen = Buffer.from(sep).length;
   let result = [];
-  let start = 0;
   let offset = 0;
 
-  while (this.indexOf(sep, start) !== -1) {
+  while (this.indexOf(sep, start = 0) !== -1) {
     offset = this.indexOf(sep, start);
     result.push(this.slice(start, offset));
 
