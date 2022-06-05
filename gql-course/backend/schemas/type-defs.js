@@ -33,6 +33,14 @@ const typeDefs = gql`
     error: String!
   }
 
+  type DeleteUserSuccessfulResult {
+    data: User!
+  }
+
+  type DeleteUserErrorResult {
+    error: String!
+  }
+
   type User {
     id: ID!
     name: String!
@@ -56,10 +64,11 @@ const typeDefs = gql`
     movies: MoviesResult
     movie (name: String!): MovieResult
   }
+
   type Mutation {
     createUser (createUserinput: CreateUserInput!): User!
     updateUsername (updateUsernameInput: UpdateUsernameInput!): User
-    deleteUser (idToDelete: ID!): User
+    deleteUser (idToDelete: ID!): DeleteUserResult
   }
 
   input CreateUserInput {
@@ -88,6 +97,8 @@ const typeDefs = gql`
 
   union MoviesResult = MoviesSuccessfulResult | MoviesErrorResult
   union MovieResult = MovieSuccessfulResult | MovieErrorResult
+
+  union DeleteUserResult = DeleteUserSuccessfulResult | DeleteUserErrorResult
 `
 
 module.exports = { typeDefs }

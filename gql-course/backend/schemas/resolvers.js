@@ -78,8 +78,13 @@ const resolvers = {
 
     deleteUser: (parent, args) => {
       const user = _.find(UserList, { id: Number(args.idToDelete) })
-      _.remove(UserList, (user) => user.id === Number(args.idToDelete))
-      return user
+
+      if (user) {
+        _.remove(UserList, (user) => user.id === Number(args.idToDelete))
+        return { data: user }
+      }
+
+      return { error: "Could not find the user id" }
     }
   },
 
@@ -118,6 +123,16 @@ const resolvers = {
       if (obj.data) return "MovieSuccessfulResult"
 
       if (obj.error) return "MovieErrorResult"
+
+      return null
+    }
+  },
+
+  DeleteUserResult: {
+    __resolveType: (obj) => {
+      if (obj.data) return "DeleteUserSuccessfulResult"
+
+      if (obj.error) return "DeleteUserErrorResult"
 
       return null
     }
