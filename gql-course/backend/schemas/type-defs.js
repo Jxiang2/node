@@ -56,7 +56,6 @@ const typeDefs = gql`
     movies: MoviesResult
     movie (name: String!): MovieResult
   }
- 
   type Mutation {
     createUser (createUserinput: CreateUserInput!): User!
     updateUsername (updateUsernameInput: UpdateUsernameInput!): User
