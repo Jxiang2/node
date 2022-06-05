@@ -11,7 +11,7 @@ const QUERY_ALL_USERS = gql`
           name
           username
           age
-         nationality
+          nationality
         }
       }
       ... on UsersErrorResult {
@@ -24,9 +24,17 @@ const QUERY_ALL_USERS = gql`
 const QUERY_ALL_MOVIES = gql`
   query GetAllMovies {
     movies {
-      id
-      name
-      yearOfPublication 
+      ... on MoviesSuccessfulResult {
+        data {
+          id
+          name
+          yearOfPublication
+          isInTheaters
+        }
+      }
+      ... on MoviesErrorResult {
+        error
+      }
     }
   }
 `
@@ -34,8 +42,16 @@ const QUERY_ALL_MOVIES = gql`
 const GET_MOVIE_BY_NAME = gql`
   query GetMovieByName($name: String!) {
     movie(name: $name) {
-      name
-      yearOfPublication
+      ... on MovieSuccessfulResult {
+        data {
+          name
+          yearOfPublication
+          isInTheaters
+        }
+      }
+      ... on MovieErrorResult {
+        error
+      }
     }
   }
 `
@@ -62,12 +78,14 @@ export default function DisplayData () {
   const [nationality, setNationality] = useState("")
 
   // queries
-  const { data: userData, loading: userLoading, error: userError, refetch: refetchUsers } = useQuery(QUERY_ALL_USERS)
+  const { data: userData, loading: userLoading, refetch: refetchUsers } = useQuery(QUERY_ALL_USERS)
   const { data: movieData, loading: movieLoading } = useQuery(QUERY_ALL_MOVIES)
   const [fetchMovie, { data: movieSearchData, error: movieFetchError }] = useLazyQuery(GET_MOVIE_BY_NAME)
 
   // mutations
   const [createUser] = useMutation(CREATE_USER)
+
+  console.log("rendered")
 
   return (
     <div>
@@ -82,10 +100,13 @@ export default function DisplayData () {
       />
 
       <button onClick={(e) => {
-        e.preventDefault()
         createUser({
           variables: { createUserinput: { name, username, age: Number(age), nationality } }
         })
+        setName("")
+        setUsername("")
+        setAge(0)
+        setNationality("")
         refetchUsers()
       }}>
         Create User
@@ -105,7 +126,7 @@ export default function DisplayData () {
       <h1>############################</h1>
       <h1>############################</h1>
 
-      {movieData && movieData.movies.map((mo) => (
+      {movieData && movieData.movies.data.map((mo) => (
         <div key={mo.id}>
           <h1>Name: {mo.name}</h1>
           <h1>Name: {mo.yearOfPublication}</h1>
@@ -126,10 +147,16 @@ export default function DisplayData () {
         Fetch Data
       </button>
 
-      {movieSearchData &&
+      {((movieSearchData) && (movieSearchData.movie.data)) &&
         <div>
-          <h1>Movie name: {movieSearchData.movie?.name}</h1>
-          <h1>Year of Publication: {movieSearchData.movie?.yearOfPublication}</h1>
+          <h1>Movie name: {movieSearchData.movie.data.name}</h1>
+          <h1>Year of Publication: {movieSearchData.movie.data.yearOfPublication}</h1>
+        </div>
+      }
+
+      {((movieSearchData) && (movieSearchData.movie.error)) &&
+        <div>
+          <h1>{movieSearchData.movie.error}</h1>
         </div>
       }
 
