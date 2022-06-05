@@ -3,38 +3,18 @@ const _ = require("loadsh")
 
 
 /**
- * 4 arguments of gql resolvers
+ * 4 arguments of query resolvers are
  * parent, args, context, info (not very useful)
+ * 
+ * the 1 argument of field resolver is args
+ * 
+ * The name of object in resolver must be identical to their definitions in type-defs.js
  */
 const resolvers = {
-  Query: {
-    users: () => {
-      if (UserList) return { data: UserList }
-      return { error: "There was an error on UserList" }
-    },
-
-    user: (args) => {
-      const filter = args.id
-      const user = _.find(UserList, { id: Number(filter) })
-      return user
-    },
-
-    movies: () => {
-      return MovieList
-    },
-
-    movie: (args) => {
-      const filter = args.name
-      const movie = _.find(MovieList, { name: filter })
-      return movie
-    },
-  },
-
-  // User's related fileds
   User: {
-    favouriteMovies: (parent, args) => {
-      console.log(parent)
-      return _.filter(MovieList, (movie) => movie.yearOfPublication < args.age * 100)
+    favouriteMovies: (args) => {
+      console.log(args)
+      return _.filter(MovieList, (movie) => movie.yearOfPublication < Number(args.age) * 100)
     },
 
     friends: (args) => {
@@ -42,15 +22,47 @@ const resolvers = {
     }
   },
 
+  Query: {
+    users: () => {
+      if (UserList) return { data: UserList }
+
+      return { error: "There was an error on retrieving UserList" }
+    },
+
+    user: (parent, args) => {
+      const user = _.find(UserList, { id: Number(args.id) })
+
+      if (user) return { data: user }
+
+      return { error: "Could not find the user in database" }
+    },
+
+    movies: () => {
+      if (MovieList) return { data: MovieList }
+
+      return { error: "There was an error on retrieving MovieList" }
+    },
+
+    movie: (parent, args) => {
+      const filter = args.name
+      const movie = _.find(MovieList, { name: filter })
+
+      if (movie) {
+        return { data: movie }
+      }
+      return { error: "Could not find the movie in database" }
+    },
+  },
+
   Mutation: {
-    createUser: (args) => {
+    createUser: (parent, args) => {
       const user = args.createUserinput
       user.id = UserList[UserList.length - 1].id + 1
       UserList.push(user)
       return user
     },
 
-    updateUsername: (args) => {
+    updateUsername: (parent, args) => {
       const { id, newUsername } = args.updateUsernameInput
       let userToUpdate
 
@@ -64,7 +76,7 @@ const resolvers = {
       return userToUpdate
     },
 
-    deleteUser: (args) => {
+    deleteUser: (parent, args) => {
       const user = _.find(UserList, { id: Number(args.idToDelete) })
       _.remove(UserList, (user) => user.id === Number(args.idToDelete))
       return user
@@ -76,6 +88,36 @@ const resolvers = {
       if (obj.data) return "UsersSuccessfulResult"
 
       if (obj.error) return "UsersErrorResult"
+
+      return null
+    }
+  },
+
+  UserResult: {
+    __resolveType: (obj) => {
+      if (obj.data) return "UserSuccessfulResult"
+
+      if (obj.error) return "UserErrorResult"
+
+      return null
+    }
+  },
+
+  MoviesResult: {
+    __resolveType: (obj) => {
+      if (obj.data) return "MoviesSuccessfulResult"
+
+      if (obj.error) return "MoviesErrorResult"
+
+      return null
+    }
+  },
+
+  MovieResult: {
+    __resolveType: (obj) => {
+      if (obj.data) return "MovieSuccessfulResult"
+
+      if (obj.error) return "MovieErrorResult"
 
       return null
     }
