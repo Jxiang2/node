@@ -2,43 +2,6 @@ import React, { useState } from 'react'
 import { useQuery, useLazyQuery, gql } from "@apollo/client"
 import { useMutation } from "@apollo/client"
 
-// const useQuery = (query, variables) => {
-//   const [data, setData] = useState(null)
-//   const [loading, setLoading] = useState(false)
-//   const [error, setError] = useState(null)
-
-//   useEffect(async () => {
-//     try {
-//       setLoading(true)
-//       const data = await GraphQL.request(query, variables)
-//       setData(data)
-//     } catch (ex) {
-//       setError(ex)
-//     } finally {
-//       setLoading(false)
-//     }
-//   }, [])
-
-//   return { data, loading, error }
-// }
-
-// const MyComponent = () => {
-//   const { data, loading, error } = useQuery(getBookQuery)
-
-//   if (loading) return <p>Loading....</p>
-//   if (error) return <p>Ops! Something went wrong</p>
-
-//   return (
-//     <>
-//       <ul>
-//         {data.books.map(book => (
-//           <li key={book.name}>{book.name}</li>
-//         ))}
-//       </ul>
-//     </>
-//   )
-// };
-
 const QUERY_ALL_USERS = gql`
   query GetAllUsers {
     users {
