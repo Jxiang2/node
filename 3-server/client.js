@@ -1,4 +1,4 @@
-const http = require('http');
+const http = require('http')
 
 // http.get({
 //   host: 'localhost',
@@ -12,20 +12,20 @@ const options = {
   host: 'localhost',
   port: 1234, // port point of resource
   path: '/?a=1',
-  method: "POST",
+  method: 'POST',
   headers: {
-    "Content-type": "application/json"
-  }
-};
+    'Content-type': 'application/json',
+  },
+}
 
 let req = http.request(options, (res) => {
-  let arr = [];
-  res.on("data", (data) => {
-    arr.push(data);
-  });
+  let arr = []
+  res.on('data', (data) => {
+    arr.push(data)
+  })
 
-  res.on("end", () => {
-    console.log(Buffer.concat(arr).toLocaleString());
-  });
-});
-req.end('{"name": "lg"}');
+  res.on('end', () => {
+    console.log(Buffer.concat(arr).toLocaleString())
+  })
+})
+req.end('{"name": "lg"}')
