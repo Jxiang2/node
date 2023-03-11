@@ -1,13 +1,16 @@
 const fs = require("fs");
 
-const ws = fs.createWriteStream(path.join(__dirname, "..", "io", "testW.txt"), {
-  flags: "w",
-  mode: 438,
-  fd: null,
-  encoding: "utf-8",
-  start: 0, // start point of resource
-  highWaterMark: 3, // a buffer stores 3 bytes, push() 3 bytes adter exthausted
-});
+const ws = fs.createWriteStream(
+  path.join(__dirname, "..", "files", "testW.txt"),
+  {
+    flags: "w",
+    mode: 438,
+    fd: null,
+    encoding: "utf-8",
+    start: 0, // start point of resource
+    highWaterMark: 3, // a buffer stores 3 bytes, push() 3 bytes adter exthausted
+  },
+);
 
 // ws.write(), ws.end() is synchronous on writing sequence
 // ws.write() only accepts string or buffer

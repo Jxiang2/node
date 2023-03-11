@@ -1,6 +1,7 @@
 const fs = require("fs");
+const path = require("path");
 
-let rs = fs.createReadStream(path.join(__dirname, "..", "io", "testR.txt"), {
+let rs = fs.createReadStream(path.join(__dirname, "..", "files", "testR.txt"), {
   flag: "r",
   encoding: null,
   fd: null,
@@ -28,7 +29,7 @@ rs.on("readable", () => {
   while ((data = rs.read(1)) !== null) {
     // each time read 1 byte from buffer
     bufferArr.push(data);
-    console.log(data.toString(), "\n------", rs._readableState.length);
+    console.log(data.toString(), "\n------");
   }
 });
 
