@@ -8,13 +8,13 @@ import {
   ParseIntPipe,
   Post,
 } from "@nestjs/common";
-import { CustomersService } from "../service/customer.service";
+import { CustomerService } from "../service/customer.service";
 
 import { CreateCustomerDto } from "../dto/CreateCustomer.dto";
 
 @Controller("customers")
-export class CustomersController {
-  constructor(private readonly customersService: CustomersService) {}
+export class CustomerController {
+  constructor(private readonly customersService: CustomerService) {}
 
   @Get("/search/:id")
   public searchCustomerById(@Param("id", ParseIntPipe) id: number) {

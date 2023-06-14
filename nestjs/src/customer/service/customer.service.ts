@@ -3,7 +3,7 @@ import { CreateCustomerDto } from "../dto/CreateCustomer.dto";
 import { Customer } from "../../Types/customer";
 
 @Injectable()
-export class CustomersService {
+export class CustomerService {
   private readonly customers: Customer[] = [
     { id: 1, email: "www.abc.com", createdAt: new Date(), name: "John Doe" },
     { id: 2, email: "www.def.com", createdAt: new Date(), name: "Jack Man" },
