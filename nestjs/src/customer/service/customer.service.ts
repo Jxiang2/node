@@ -1,10 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { CreateCustomerDto } from "../dto/CreateCustomer.dto";
-import { Customer } from "../../Types/customer";
 
 @Injectable()
 export class CustomerService {
-  private readonly customers: Customer[] = [
+  private readonly customers = [
     { id: 1, email: "www.abc.com", createdAt: new Date(), name: "John Doe" },
     { id: 2, email: "www.def.com", createdAt: new Date(), name: "Jack Man" },
     { id: 3, email: "www.ghi.com", createdAt: new Date(), name: "Peter Pan" },

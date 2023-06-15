@@ -27,7 +27,7 @@ export class CustomerController {
 
   @Get("")
   public async getCustomers() {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     return this.customersService.getCustomers();
   }
 
