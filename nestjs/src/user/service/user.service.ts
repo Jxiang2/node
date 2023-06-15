@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class UserService {
-  private readonly users = [
+  private users = [
     { username: "John Doe", password: "changeme" },
     { username: "Jack Man", password: "guess" },
     { username: "Peter Pan", password: "guess what" },

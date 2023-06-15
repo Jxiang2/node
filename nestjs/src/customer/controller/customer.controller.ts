@@ -14,7 +14,7 @@ import { CreateCustomerDto } from "../dto/CreateCustomer.dto";
 
 @Controller("customers")
 export class CustomerController {
-  constructor(private readonly customersService: CustomerService) {}
+  constructor(private customersService: CustomerService) {}
 
   @Get("/search/:id")
   public searchCustomerById(@Param("id", ParseIntPipe) id: number) {

@@ -3,7 +3,7 @@ import { CreateCustomerDto } from "../dto/CreateCustomer.dto";
 
 @Injectable()
 export class CustomerService {
-  private readonly customers = [
+  private customers = [
     { id: 1, email: "www.abc.com", createdAt: new Date(), name: "John Doe" },
     { id: 2, email: "www.def.com", createdAt: new Date(), name: "Jack Man" },
     { id: 3, email: "www.ghi.com", createdAt: new Date(), name: "Peter Pan" },
