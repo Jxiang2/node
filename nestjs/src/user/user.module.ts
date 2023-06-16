@@ -4,6 +4,12 @@ import { UserService } from "./service/user.service";
 
 @Module({
   controllers: [UserController],
-  providers: [UserService],
+  providers: [
+    {
+      // Enable named injection
+      provide: "USER_SERVICE",
+      useClass: UserService,
+    },
+  ],
 })
 export class UserModule {}
