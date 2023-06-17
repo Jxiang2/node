@@ -5,8 +5,8 @@ export class UserVo {
     Object.assign(this, partial);
   }
 
-  username: string;
+  username!: string;
 
   @Exclude()
-  password: string;
+  password!: string;
 }

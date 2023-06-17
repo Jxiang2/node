@@ -1,5 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { UserVo } from "../serializer/user.serializer";
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class UserService {
@@ -11,16 +10,10 @@ export class UserService {
   ];
 
   public getUsers() {
-    return this.users.map((user) => new UserVo(user));
+    return this.users;
   }
 
   public getUserByUsername(username: string) {
-    const user = this.users.find((user) => user.username === username);
-
-    if (!!user) {
-      return new UserVo(user);
-    } else {
-      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
-    }
+    return this.users.find((user) => user.username === username);
   }
 }

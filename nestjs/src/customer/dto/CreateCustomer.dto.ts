@@ -12,20 +12,20 @@ import { Type } from "class-transformer";
 
 export class CreateCustomerDto {
   @IsNumberString()
-  id: number;
+  id!: number;
 
   @IsNotEmpty()
   @IsLowercase()
-  name: string;
+  name!: string;
 
   @IsEmail()
-  email: string;
+  email!: string;
 
   @IsBoolean()
-  verified: boolean;
+  verified!: boolean;
 
   @ValidateNested()
   @IsNotEmptyObject()
   @Type(() => CreateAddressDto)
-  address: CreateAddressDto;
+  address!: CreateAddressDto;
 }
