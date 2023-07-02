@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "start": "tsx watch src/main.ts"
+    "start": "tsx watch src/main.ts",
+    "build": "tsc -p .",
+    "cluster": "pm2-runtime start dist/main.js -i max"
   },
   "dependencies": {
     "argon2": "^0.30.3",
@@ -12,6 +14,7 @@
     "pg": "^8.11.1",
     "pino": "^8.14.1",
     "pino-pretty": "^10.0.0",
+    "pm2": "^5.3.0",
     "zennv": "^0.1.1",
     "zod": "^3.21.4"
   },
