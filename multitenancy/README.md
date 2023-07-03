@@ -27,3 +27,15 @@ pnpm run migrate
 ```bash
 pnpm run dev
 ```
+
+## Build Docker image
+
+```bash
+docker build -t multitenancy:v1 -f Dockerfile.dev .
+```
+
+## Run Docker container for development
+
+```bash
+docker run --rm -p 8080:8080 -v ${PWD}:/app -v /app/node_modules --name app-container multitenancy:v1
+```

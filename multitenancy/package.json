@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "start": "tsx watch src/main.ts",
-    "build": "tsc -p .",
-    "cluster": "pm2-runtime start dist/main.js -i max"
+    "run:dev": "tsx watch src/main.ts",
+    "run:prod": "pm2-runtime start dist/main.js -i max",
+    "build": "tsc -p ."
   },
   "dependencies": {
     "argon2": "^0.30.3",
