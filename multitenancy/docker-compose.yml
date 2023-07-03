@@ -1,16 +1,20 @@
-version: "3.4"
+version: "3.8"
 services:
   myapp:
     container_name: multitenancy-container
     restart: always
+    env-file:
+      - ./.env
     build:
       context: ./
       dockerfile: Dockerfile.dev
+      args:
+        - PORT=${PORT}
     ports:
-      - 8080:8080
+      - 8080:${PORT}
     volumes:
-      - .:/app
-      - /app/node_modules/
+      - ./:/app
+      - exclude:/app/node_modules/
 
 volumes:
   exclude:

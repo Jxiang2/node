@@ -9,7 +9,7 @@ async function main() {
     host: env.HOST,
   });
 
-  console.log("Hello world!!!");
+  console.log("Hello world!!!!!");
 }
 
 main();
