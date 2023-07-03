@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "run:dev": "tsx watch src/main.ts",
-    "run:prod": "pm2-runtime start dist/main.js -i max",
+    "start": "tsx watch src/main.ts",
+    "deploy": "pm2-runtime start dist/main.js -i max",
     "build": "tsc -p ."
   },
   "dependencies": {

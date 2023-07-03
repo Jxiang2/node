@@ -9,6 +9,9 @@ export async function bootstrap() {
   // register plugins
 
   // register routes
+  app.get("/test", async function handler(request, reply) {
+    return { hello: "world" };
+  });
 
   return app;
 }

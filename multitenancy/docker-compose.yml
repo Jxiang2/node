@@ -3,13 +3,12 @@ services:
   myapp:
     container_name: multitenancy-container
     restart: always
-    env-file:
-      - ./.env
     build:
       context: ./
       dockerfile: Dockerfile.dev
       args:
         - PORT=${PORT}
+        - MODE=${MODE}
     ports:
       - 8080:${PORT}
     volumes:
