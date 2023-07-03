@@ -2,7 +2,8 @@
   "scripts": {
     "start": "tsx watch src/main.ts",
     "deploy": "pm2-runtime start dist/main.js -i max",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "prettier": "prettier --write src/"
   },
   "dependencies": {
     "argon2": "^0.30.3",
@@ -22,6 +23,7 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/pg": "^8.10.2",
     "drizzle-kit": "^0.19.3",
+    "prettier": "2.8.8",
     "tsx": "^3.12.7",
     "typescript": "^5.1.6",
     "zod-to-json-schema": "^3.21.3"

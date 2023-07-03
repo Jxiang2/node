@@ -1,7 +1,7 @@
 version: "3.8"
 services:
-  myapp:
-    container_name: multitenancy-container
+  app:
+    container_name: app-container
     restart: always
     build:
       context: ./
@@ -11,6 +11,7 @@ services:
         - MODE=${MODE}
     ports:
       - 8080:${PORT}
+
     volumes:
       - ./:/app
       - exclude:/app/node_modules/

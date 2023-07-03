@@ -1,13 +1,13 @@
-import { bootstrap } from "./server";
+import { env } from "config/env";
+import { bootstrap } from "server";
 
 async function main() {
   const app = await bootstrap();
 
   await app.listen({
-    port: 8080,
+    port: env.PORT,
+    host: env.HOST,
   });
-
-  console.log("Hello world!!!!!");
 }
 
 main();
