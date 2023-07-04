@@ -4,7 +4,7 @@ import { z } from "zod";
 export const env = zenv({
   dotenv: true,
   schema: z.object({
-    PORT: z.number().default(8080),
-    HOST: z.string().default("0.0.0.0"),
+    PORT: z.number().default(process.env.PORT),
+    HOST: z.string().default(process.env.HOST),
   }),
 });

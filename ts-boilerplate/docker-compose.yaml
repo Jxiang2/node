@@ -10,7 +10,7 @@ services:
         - PORT=${PORT}
         - MODE=${MODE}
     ports:
-      - 8080:${PORT}
+      - 8080:${PORT} # host:container
 
     volumes:
       - ./:/app
