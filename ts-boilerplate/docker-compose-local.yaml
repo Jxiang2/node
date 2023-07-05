@@ -1,14 +1,15 @@
 version: "3.8"
 services:
   app:
-    container_name: app-container
+    container_name: app-local-container
+    image: app-local-image
     restart: always
     build:
       context: ./
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.local
       args:
         - PORT=${PORT}
-        - MODE=${MODE}
+        - MODE=start
     ports:
       - 8080:${PORT} # host:container
 

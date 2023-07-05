@@ -20,14 +20,14 @@ dependencies:
   pm2:
     specifier: ^5.3.0
     version: 5.3.0
-  zennv:
-    specifier: ^0.1.1
-    version: 0.1.1
   zod:
     specifier: ^3.21.4
     version: 3.21.4
 
 devDependencies:
+  '@types/node':
+    specifier: ^20.3.3
+    version: 20.3.3
   prettier:
     specifier: 2.8.8
     version: 2.8.8
@@ -440,6 +440,10 @@ packages:
     resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
     dev: false
 
+  /@types/node@20.3.3:
+    resolution: {integrity: sha512-wheIYdr4NYML61AjC8MKj/2jrR/kDQri/CIpVoZwldwhnIrD/j9jIU5bJ8yBKuB2VhpFV7Ab6G2XkBjv9r9Zzw==}
+    dev: true
+
   /abort-controller@3.0.0:
     resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
     engines: {node: '>=6.5'}
@@ -833,11 +837,6 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.6.0
-    dev: false
-
-  /dotenv@16.3.1:
-    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
-    engines: {node: '>=12'}
     dev: false
 
   /emitter-listener@1.1.2:
@@ -2294,14 +2293,6 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-    dev: false
-
-  /zennv@0.1.1:
-    resolution: {integrity: sha512-yAszZBjMYY97kuQ7pVQm5FLz/amtOpzyyhaF7+CwdJZ3Kz9f60pLy2LRqygdcWcV3LcxsUcngfWXxk5ZO98XRQ==}
-    engines: {node: '>=10'}
-    dependencies:
-      dotenv: 16.3.1
-      zod: 3.21.4
     dev: false
 
   /zod-to-json-schema@3.21.3(zod@3.21.4):
