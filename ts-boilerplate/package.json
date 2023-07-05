@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "tsx watch src/main.ts",
-    "deploy": "node dist/main.js",
+    "deploy": "pm2-runtime start dist/main.js -i max",
     "build": "tsc -p .",
     "prettier": "prettier --write src/"
   },
