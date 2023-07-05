@@ -14,7 +14,7 @@ COPY package*.json ./
 COPY pnpm-lock.yaml ./
 
 # Install dependencies
-RUN pnpm run install
+RUN pnpm install
 
 # Bundle app source
 COPY . .
