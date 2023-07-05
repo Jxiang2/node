@@ -14,7 +14,7 @@ COPY package*.json ./
 COPY pnpm-lock.yaml ./
 
 # Install dependencies
-RUN pnpm install
+RUN pnpm install --prod
 
 # Bundle app source
 COPY . .
@@ -24,4 +24,4 @@ RUN pnpm build
 
 EXPOSE $PORT
 
-CMD pnpm $MODE
+CMD pnpm run $MODE

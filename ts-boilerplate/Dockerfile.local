@@ -21,4 +21,4 @@ COPY . .
 
 EXPOSE $PORT
 
-CMD pnpm $MODE
+CMD pnpm run $MODE

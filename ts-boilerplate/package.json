@@ -1,11 +1,12 @@
 {
   "scripts": {
     "start": "tsx watch src/main.ts",
-    "deploy": "pm2-runtime start dist/main.js -i max",
+    "deploy": "node dist/main.js",
     "build": "tsc -p .",
     "prettier": "prettier --write src/"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "fastify": "^4.19.1",
     "fastify-zod": "^1.3.2",
     "pino": "^8.14.1",
