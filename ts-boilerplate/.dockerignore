@@ -1,4 +1,6 @@
 README.md
+.prettierrc
+.prettierignore
 
 .git
 .gitignore
@@ -6,6 +8,8 @@ README.md
 
 dist
 node_modules
+
+.env.example
 
 .vscode
 .idea
