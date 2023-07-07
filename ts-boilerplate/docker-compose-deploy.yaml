@@ -1,9 +1,9 @@
 version: "3.8"
+
 services:
   app:
-    container_name: app-deploy-container
     image: app-deploy-image
-    restart: always
+    container_name: app-deploy-container
     build:
       context: ./
       dockerfile: Dockerfile.deploy

@@ -24,4 +24,4 @@ RUN pnpm run build
 
 EXPOSE $PORT
 
-CMD pnpm run $MODE
+CMD pnpm run:$MODE
