@@ -5,12 +5,13 @@ import { Injectable, Scope } from "@nestjs/common";
 export class LifecycleService {
   private userId: string | undefined;
 
-  public setUserId(userId: string) {
+  public async setUserId(userId: string) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
     this.userId = userId;
   }
 
   public async getUserId() {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     return this?.userId;
   }
 }

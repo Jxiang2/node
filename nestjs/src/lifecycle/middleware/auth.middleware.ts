@@ -8,11 +8,11 @@ export class AuthMiddleware implements NestMiddleware {
 
   constructor(private readonly lifecycleService: LifecycleService) {}
 
-  use(req: Request, res: Response, next: NextFunction) {
+  async use(req: Request, res: Response, next: NextFunction) {
     this.logger.log(AuthMiddleware.name);
 
     const userId = "123";
-    this.lifecycleService.setUserId(userId);
+    await this.lifecycleService.setUserId(userId);
 
     next();
   }
