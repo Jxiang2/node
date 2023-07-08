@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
 
-export class UserVo {
+export class UserSerializer {
   id: number;
 
   username: string;
@@ -8,7 +8,7 @@ export class UserVo {
   @Exclude()
   password: string;
 
-  constructor(userVo: UserVo) {
+  constructor(userVo: UserSerializer) {
     this.id = userVo.id;
     this.username = userVo.username;
     this.password = userVo.password;

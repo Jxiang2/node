@@ -10,10 +10,10 @@ import {
   UseFilters,
   UseInterceptors,
 } from "@nestjs/common";
-import { UserService } from "../service/user.service";
-import { UserVo } from "../serializer/user.serializer";
-import { UserNotFoundException } from "../handler/UserNotFoundException";
-import { HttpExceptionFilter } from "../handler/http-exception.filter";
+import { UserService } from "./user.service";
+import { UserSerializer } from "./serializer/user.serializer";
+import { UserNotFoundException } from "./filter/UserNotFoundException";
+import { HttpExceptionFilter } from "./filter/http-exception.filter";
 
 @Controller("users")
 export class UserController {
@@ -23,7 +23,7 @@ export class UserController {
   @UseInterceptors(ClassSerializerInterceptor)
   public getUsers() {
     const users = this.userService.getUsers();
-    return users.map((user) => new UserVo(user));
+    return users.map((user) => new UserSerializer(user));
   }
 
   @Get("/username/:username")
@@ -31,7 +31,7 @@ export class UserController {
   public getUserByUsername(@Param("username") username: string) {
     const user = this.userService.getUserByUsername(username);
     if (!!user) {
-      return new UserVo(user);
+      return new UserSerializer(user);
     } else {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
@@ -43,7 +43,7 @@ export class UserController {
   public getUserById(@Param("id", ParseIntPipe) id: number) {
     const user = this.userService.getUserById(id);
     if (!!user) {
-      return new UserVo(user);
+      return new UserSerializer(user);
     } else {
       throw new UserNotFoundException();
     }
