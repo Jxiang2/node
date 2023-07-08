@@ -1,10 +1,18 @@
 import { IsNotEmpty } from "class-validator";
 
-export class CreateAddressDto {
+interface CreateAddress {
+  line1: string;
+  line2?: string;
+  zip: string;
+  city: string;
+  state: string;
+}
+
+export class CreateAddressDto implements CreateAddress {
   @IsNotEmpty()
   line1: string;
 
-  line2: string;
+  line2?: string;
 
   @IsNotEmpty()
   zip: string;
