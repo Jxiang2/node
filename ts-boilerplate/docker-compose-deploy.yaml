@@ -9,6 +9,5 @@ services:
       dockerfile: Dockerfile.deploy
       args:
         - PORT=${PORT}
-        - MODE=deploy
     ports:
       - 8080:${PORT} # host:container

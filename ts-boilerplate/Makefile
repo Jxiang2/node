@@ -1,9 +1,9 @@
-run-local:
+local-run:
 	docker compose -f docker-compose-local.yaml up
-stop-local:
+local-stop:
 	docker compose -f docker-compose-local.yaml down
 
-run-deploy:
+deploy-run:
 	docker compose -f docker-compose-deploy.yaml up
-stop-deploy:
+deploy-stop:
 	docker compose -f docker-compose-deploy.yaml down

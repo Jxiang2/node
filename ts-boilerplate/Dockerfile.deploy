@@ -1,27 +1,33 @@
-FROM node:18
+FROM node:18-bullseye as build
 RUN npm install -g pnpm
 
-# Create app directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-ARG PORT
-ENV PORT=$PORT
-ARG MODE
-ENV MODE=$MODE
-
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
 
-# Install dependencies
 RUN pnpm install
 
-# Bundle app source
 COPY . .
 
-# Build app
 RUN pnpm run build
+
+FROM node:18-bullseye as deploy
+RUN npm install -g pnpm
+
+ARG PORT
+ENV PORT=$PORT
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+COPY pnpm-lock.yaml ./
+
+RUN pnpm install --only=prod
+
+COPY .env .
+COPY --from=build /usr/src/app/dist ./dist
 
 EXPOSE $PORT
 
-CMD pnpm run:$MODE
+CMD ["node", "dist/main"]

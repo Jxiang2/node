@@ -10,7 +10,7 @@ export async function bootstrap() {
 
   // register routes
   app.get("/test", async function handler(request, reply) {
-    return { hello: "world" };
+    return { hello: "world!!!" };
   });
 
   return app;
