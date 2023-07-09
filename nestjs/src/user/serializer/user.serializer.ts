@@ -1,12 +1,16 @@
 import { Exclude } from "class-transformer";
 
-export class UserVo {
-  constructor(partial: Partial<UserVo>) {
-    Object.assign(this, partial);
-  }
+export class UserSerializer {
+  id: number;
 
-  username!: string;
+  username: string;
 
   @Exclude()
-  password!: string;
+  password: string;
+
+  constructor(userVo: UserSerializer) {
+    this.id = userVo.id;
+    this.username = userVo.username;
+    this.password = userVo.password;
+  }
 }

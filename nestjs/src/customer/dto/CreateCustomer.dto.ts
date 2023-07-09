@@ -12,20 +12,28 @@ import { Type } from "class-transformer";
 
 export class CreateCustomerDto {
   @IsNumberString()
-  id!: number;
+  id: number;
 
   @IsNotEmpty()
   @IsLowercase()
-  name!: string;
+  name: string;
 
   @IsEmail()
-  email!: string;
+  email: string;
 
   @IsBoolean()
-  verified!: boolean;
+  verified: boolean;
 
   @ValidateNested()
   @IsNotEmptyObject()
   @Type(() => CreateAddressDto)
-  address!: CreateAddressDto;
+  address: CreateAddressDto;
+
+  constructor(createCustomerDto: CreateCustomerDto) {
+    this.id = createCustomerDto.id;
+    this.name = createCustomerDto.name;
+    this.email = createCustomerDto.email;
+    this.verified = createCustomerDto.verified;
+    this.address = createCustomerDto.address;
+  }
 }

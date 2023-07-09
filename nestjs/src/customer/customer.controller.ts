@@ -8,9 +8,9 @@ import {
   ParseIntPipe,
   Post,
 } from "@nestjs/common";
-import { CustomerService } from "../service/customer.service";
+import { CustomerService } from "./customer.service";
 
-import { CreateCustomerDto } from "../dto/CreateCustomer.dto";
+import { CreateCustomerDto } from "./dto/CreateCustomer.dto";
 
 @Controller("customers")
 export class CustomerController {
@@ -19,10 +19,8 @@ export class CustomerController {
   @Get("/search/:id")
   public searchCustomerById(@Param("id", ParseIntPipe) id: number) {
     const customer = this.customersService.findCustomer(id);
-    if (!customer) {
-      throw new HttpException("Customer not found", HttpStatus.NOT_FOUND);
-    }
-    return customer;
+    if (customer) return customer;
+    else throw new HttpException("Customer not found", HttpStatus.NOT_FOUND);
   }
 
   @Get("")

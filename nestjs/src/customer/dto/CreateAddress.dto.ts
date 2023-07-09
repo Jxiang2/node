@@ -1,17 +1,33 @@
 import { IsNotEmpty } from "class-validator";
 
-export class CreateAddressDto {
-  @IsNotEmpty()
-  line1!: string;
+interface CreateAddress {
+  line1: string;
+  line2?: string;
+  zip: string;
+  city: string;
+  state: string;
+}
 
-  line2!: string;
+export class CreateAddressDto implements CreateAddress {
+  @IsNotEmpty()
+  line1: string;
+
+  line2?: string;
 
   @IsNotEmpty()
-  zip!: string;
+  zip: string;
 
   @IsNotEmpty()
-  city!: string;
+  city: string;
 
   @IsNotEmpty()
-  state!: string;
+  state: string;
+
+  constructor(createAddressDto: CreateAddressDto) {
+    this.line1 = createAddressDto.line1;
+    this.line2 = createAddressDto.line2;
+    this.zip = createAddressDto.zip;
+    this.city = createAddressDto.city;
+    this.state = createAddressDto.state;
+  }
 }
