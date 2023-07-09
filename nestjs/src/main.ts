@@ -8,11 +8,11 @@ async function bootstrap() {
   app.setGlobalPrefix("/api");
   app.useGlobalPipes(
     new ValidationPipe({
-      forbidNonWhitelisted: true, // invalid payload will be rejected
+      forbidNonWhitelisted: true,
     }),
   );
 
-  await app.listen(8000);
+  await app.listen(Number(process.env.PORT), String(process.env.HOST));
 }
 
 bootstrap();
