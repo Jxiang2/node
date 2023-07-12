@@ -5,7 +5,7 @@ import { LoggingInterceptor } from "../interceptor/logging.interceptor";
 export class FreezePipe implements PipeTransform {
   private readonly logger = new Logger(LoggingInterceptor.name);
 
-  transform(value: any) {
+  transform(value: unknown) {
     this.logger.log(FreezePipe.name);
     return Object.freeze(value); // completely immutable
   }
