@@ -24,7 +24,7 @@ import { LoggingInterceptor } from "./interceptor/logging.interceptor";
   ],
 })
 export class LifeCycleModule {
-  configure(consumer: MiddlewareConsumer) {
+  public configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
       .forRoutes({ path: "lifecycle", method: RequestMethod.GET });

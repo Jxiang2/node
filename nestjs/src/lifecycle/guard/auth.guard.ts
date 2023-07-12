@@ -11,7 +11,7 @@ import { Observable } from "rxjs";
 export class AuthGuard implements CanActivate {
   private readonly logger = new Logger(AuthGuard.name);
 
-  canActivate(
+  public canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     this.logger.log(AuthGuard.name);

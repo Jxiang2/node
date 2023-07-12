@@ -4,15 +4,14 @@ import { FreezePipe } from "./pipe/freeze.pipe";
 
 @Controller("lifecycle")
 export class LifeCycleController {
-  constructor(private readonly lifecycleService: LifecycleService) {}
+  public constructor(private readonly lifecycleService: LifecycleService) {}
 
   @Get()
   // @UseGuards(AuthGuard) guarded in lifecycle module
   public async testLifecycle() {
     console.log("called once");
-
-    const uid = await this.lifecycleService.getUserId();
-    return `User ID: ${uid}`;
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return `Done!`;
   }
 
   @Post()

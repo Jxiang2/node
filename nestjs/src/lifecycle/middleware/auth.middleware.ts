@@ -6,9 +6,9 @@ import { LifecycleService } from "../lifecycle.service";
 export class AuthMiddleware implements NestMiddleware {
   private readonly logger = new Logger(AuthMiddleware.name);
 
-  constructor(private readonly lifecycleService: LifecycleService) {}
+  public constructor(private readonly lifecycleService: LifecycleService) {}
 
-  async use(req: Request, res: Response, next: NextFunction) {
+  public async use(req: Request, res: Response, next: NextFunction) {
     this.logger.log(AuthMiddleware.name);
 
     const userId = "123";
