@@ -1,4 +1,4 @@
-FROM node:18-bullseye as build
+FROM node:18-bullseye-slim as build
 RUN npm install -g pnpm
 
 WORKDIR /usr/src/app
@@ -11,6 +11,8 @@ RUN pnpm install
 COPY . .
 
 RUN pnpm run build
+
+# ========================
 
 FROM node:18-bullseye as deploy
 RUN npm install -g pnpm

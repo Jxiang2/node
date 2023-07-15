@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   app:
-    image: app-deploy-image
-    container_name: app-deploy-container
+    image: app-${PROFILE}-image
+    container_name: app-${PROFILE}-container
     build:
       context: ./
       dockerfile: Dockerfile.deploy
